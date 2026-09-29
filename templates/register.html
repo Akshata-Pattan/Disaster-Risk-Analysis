@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Register | DRISKA{% endblock %}
+{% block content %}
+<div class="auth-page">
+    <div class="auth-card">
+        <div class="eyebrow">GET STARTED</div>
+        <h1>Create your account</h1>
+        <p>Save your disaster risk analyses securely.</p>
+        <form method="POST" class="form">
+            <label>Full name<input type="text" name="full_name" required placeholder="Your name"></label>
+            <label>Email<input type="email" name="email" required placeholder="you@example.com"></label>
+            <label>Password<input type="password" name="password" required minlength="6" placeholder="At least 6 characters"></label>
+            <button class="primary-btn full" type="submit">Create Account →</button>
+        </form>
+        <p class="form-bottom">Already registered? <a href="{{ url_for('login') }}">Login</a></p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}DRISKA | Disaster Risk Analysis{% endblock %}
+{% block content %}
+<section class="hero">
+    <div class="hero-copy">
+        <div class="eyebrow">SMART DISASTER RISK ASSESSMENT</div>
+        <h1>Know the risk.<br><span>Prepare before it happens.</span></h1>
+        <p>Assess disaster risk using environmental and population factors through a simple, interactive risk analysis system.</p>
+        <div class="hero-actions">
+            {% if session.get('user_id') %}
+                <a href="{{ url_for('analysis') }}" class="primary-btn">Start Risk Analysis →</a>
+                <a href="{{ url_for('dashboard') }}" class="secondary-btn">Open Dashboard</a>
+            {% else %}
+                <a href="{{ url_for('register') }}" class="primary-btn">Start Risk Analysis →</a>
+                <a href="#disasters" class="secondary-btn">Explore System</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="hero-visual">
+        <div class="radar">
+            <div class="radar-ring ring1"></div>
+            <div class="radar-ring ring2"></div>
+            <div class="radar-ring ring3"></div>
+            <div class="radar-sweep"></div>
+            <div class="radar-dot dot1"></div>
+            <div class="radar-dot dot2"></div>
+            <div class="radar-center">RISK<br><small>SCAN</small></div>
+        </div>
+    </div>
+</section>
+
+<section id="disasters" class="section">
+    <div class="section-heading">
+        <div class="eyebrow">COVERAGE</div>
+        <h2>Analyze multiple disaster scenarios</h2>
+    </div>
+    <div class="disaster-grid">
+        <div class="disaster-card"><span>🌊</span><h3>Flood</h3><p>Rainfall, humidity, elevation and history.</p></div>
+        <div class="disaster-card"><span>🌀</span><h3>Cyclone</h3><p>Wind, rainfall, population and history.</p></div>
+        <div class="disaster-card"><span>⛰️</span><h3>Landslide</h3><p>Rainfall, terrain and previous events.</p></div>
+        <div class="disaster-card"><span>🔥</span><h3>Wildfire</h3><p>Temperature, humidity, wind and history.</p></div>
+        <div class="disaster-card"><span>🌍</span><h3>Earthquake</h3><p>Population, terrain and historical exposure.</p></div>
+        <div class="disaster-card"><span>🌊</span><h3>Tsunami</h3><p>Elevation, population and historical exposure.</p></div>
+    </div>
+</section>
+
+<section class="how-section">
+    <div class="section-heading">
+        <div class="eyebrow">HOW IT WORKS</div>
+        <h2>Three simple steps</h2>
+    </div>
+    <div class="steps">
+        <div class="step"><b>01</b><h3>Enter data</h3><p>Provide location and environmental information.</p></div>
+        <div class="step"><b>02</b><h3>Analyze</h3><p>Our lightweight rule-based engine calculates a risk score.</p></div>
+        <div class="step"><b>03</b><h3>Prepare</h3><p>Get risk factors and practical safety recommendations.</p></div>
+    </div>
+</section>
+{% endblock %}

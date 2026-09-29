@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | DRISKA{% endblock %}
+{% block content %}
+<section class="page-head">
+    <div>
+        <div class="eyebrow">OVERVIEW</div>
+        <h1>Welcome, {{ name }}</h1>
+        <p>Your disaster risk analysis workspace.</p>
+    </div>
+    <a class="primary-btn" href="{{ url_for('analysis') }}">+ New Analysis</a>
+</section>
+
+<div class="stats-grid">
+    <div class="stat-card"><span>Total analyses</span><strong>{{ total }}</strong><small>Saved to Supabase</small></div>
+    <div class="stat-card"><span>High / Extreme</span><strong>{{ high }}</strong><small>Cases requiring attention</small></div>
+    <div class="stat-card"><span>Average risk</span><strong>{{ average }}</strong><small>Out of 100</small></div>
+</div>
+
+<section class="panel">
+    <div class="panel-head"><h2>Recent analyses</h2><a href="{{ url_for('history') }}">View all →</a></div>
+    {% if analyses %}
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>Location</th><th>Disaster</th><th>Score</th><th>Level</th></tr></thead>
+            <tbody>
+            {% for item in analyses %}
+            <tr>
+                <td>{{ item.location }}</td>
+                <td>{{ item.disaster_type }}</td>
+                <td>{{ item.risk_score }}</td>
+                <td><span class="badge {{ item.risk_level|lower }}">{{ item.risk_level }}</span></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <div class="empty">No analyses yet. Start your first risk assessment.</div>
+    {% endif %}
+</section>
+{% endblock %}

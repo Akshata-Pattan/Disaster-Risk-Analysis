@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Risk Analysis | DRISKA{% endblock %}
+{% block content %}
+<section class="page-head">
+    <div>
+        <div class="eyebrow">RISK ENGINE</div>
+        <h1>Disaster Risk Analysis</h1>
+        <p>Enter the available conditions. Values can be approximate for academic analysis.</p>
+    </div>
+</section>
+
+<form method="POST" class="analysis-form">
+    <div class="form-panel">
+        <div class="panel-title">01 · Scenario</div>
+        <div class="form-grid">
+            <label>Location<input type="text" name="location" required placeholder="e.g. Kalaburagi"></label>
+            <label>Disaster type
+                <select name="disaster_type" id="disaster_type" required>
+                    <option value="Flood">🌊 Flood</option>
+                    <option value="Cyclone">🌀 Cyclone</option>
+                    <option value="Landslide">⛰️ Landslide</option>
+                    <option value="Wildfire">🔥 Wildfire</option>
+                    <option value="Earthquake">🌍 Earthquake</option>
+                    <option value="Tsunami">🌊 Tsunami</option>
+                </select>
+            </label>
+        </div>
+    </div>
+
+    <div class="form-panel">
+        <div class="panel-title">02 · Environmental & social factors</div>
+        <div class="form-grid">
+            <label>Rainfall (mm)<input type="number" step="0.1" min="0" name="rainfall" placeholder="e.g. 180"></label>
+            <label>Temperature (°C)<input type="number" step="0.1" name="temperature" placeholder="e.g. 32"></label>
+            <label>Wind speed (km/h)<input type="number" step="0.1" min="0" name="wind_speed" placeholder="e.g. 60"></label>
+            <label>Humidity (%)<input type="number" step="0.1" min="0" max="100" name="humidity" placeholder="e.g. 75"></label>
+            <label>Elevation (m)<input type="number" step="0.1" min="0" name="elevation" placeholder="e.g. 450"></label>
+            <label>Population density (people/km²)<input type="number" step="0.1" min="0" name="population_density" placeholder="e.g. 1500"></label>
+            <label>Previous disaster events<input type="number" min="0" name="previous_disasters" placeholder="e.g. 2"></label>
+        </div>
+    </div>
+
+    <button class="primary-btn analyze-btn" type="submit">⚡ Calculate Risk Score</button>
+</form>
+{% endblock %}

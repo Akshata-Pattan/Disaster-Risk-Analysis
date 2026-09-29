@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Risk Result | DRISKA{% endblock %}
+{% block content %}
+<section class="result-hero">
+    <div>
+        <div class="eyebrow">ANALYSIS COMPLETE</div>
+        <h1>{{ disaster }} risk assessment</h1>
+        <p>{{ location }}</p>
+    </div>
+    <div class="score-ring {{ color }}">
+        <div><strong>{{ score }}</strong><span>/ 100</span></div>
+    </div>
+</section>
+
+<div class="result-grid">
+    <section class="panel result-level">
+        <div class="eyebrow">RISK LEVEL</div>
+        <h2 class="{{ color }}-text">{{ level }} Risk</h2>
+        <p>The score is an academic risk-assessment indicator based on the entered factors. It is not an official emergency warning.</p>
+    </section>
+
+    <section class="panel">
+        <div class="panel-title">Major risk factors</div>
+        {% for name, value in factors %}
+        <div class="factor">
+            <div><span>{{ name }}</span><b>{{ value|round(1) }}%</b></div>
+            <div class="bar"><i style="width: {{ value }}%"></i></div>
+        </div>
+        {% endfor %}
+    </section>
+</div>
+
+<section class="panel recommendations">
+    <div class="panel-title">🛡️ Safety recommendations</div>
+    <div class="recommendation-grid">
+        {% for item in recommendations %}
+        <div class="recommendation"><span>✓</span>{{ item }}</div>
+        {% endfor %}
+    </div>
+</section>
+
+<div class="center-actions">
+    <a href="{{ url_for('analysis') }}" class="primary-btn">Run Another Analysis</a>
+    <a href="{{ url_for('history') }}" class="secondary-btn">View History</a>
+</div>
+{% endblock %}
